@@ -1,0 +1,31 @@
+package com.abernathy.medilabomedicalnotes.service;
+
+import com.abernathy.medilabomedicalnotes.model.MedicalHistoryNote;
+import com.abernathy.medilabomedicalnotes.repository.MedicalHistoryRepository;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class MedicalHistoryService {
+
+    private final MedicalHistoryRepository repository;
+
+    public MedicalHistoryService(MedicalHistoryRepository repository) {
+        this.repository = repository;
+    }
+
+    public MedicalHistoryNote addNote(Long patientId, String physician, String note, String patientName) {
+        MedicalHistoryNote historyNote = new MedicalHistoryNote();
+        historyNote.setPatientId(patientId);
+        historyNote.setPhysician(physician);
+        historyNote.setNote(note);
+        historyNote.setPatientName(patientName);
+        return repository.save(historyNote);
+    }
+
+    public List<MedicalHistoryNote> getNotesForPatient(Long patientId) {
+        return repository.findByPatientIdOrderByCreatedAtDesc(patientId);
+    }
+}
+
