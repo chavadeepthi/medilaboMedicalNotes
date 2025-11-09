@@ -39,7 +39,6 @@ public class MedicalHistoryController {
 }
 
 
-
 //package com.abernathy.medilabomedicalnotes.controller;
 //
 //import com.abernathy.medilabomedicalnotes.model.MedicalHistoryNote;
